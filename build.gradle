@@ -1,0 +1,17 @@
+group 'ar.edu.unq.obj3'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.5'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.5'
+    testCompile 'junit:junit:4.12'
+}
