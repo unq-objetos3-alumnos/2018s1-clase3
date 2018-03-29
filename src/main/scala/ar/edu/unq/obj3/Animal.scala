@@ -30,13 +30,13 @@ class Caballo extends Animal {
   }
 }
 
-class Corral[T <: Animal](val animales:mutable.Set[T]) {
+class Corral[+T <: Animal](var animales:List[T]) {
   def pesoTotal:Int = animales.map(_.peso).sum
 //  def elMasGordo:T =
 }
 
 class Pastor {
-  def pastorear(animales:mutable.Set[Animal]):Unit
+  def pastorear(animales:List[Animal]):Unit
       = animales.foreach(_.comer())
 }
 
@@ -54,8 +54,8 @@ object Ejemplo extends App {
   val loca:Animal = new VacaLoca
 
   private val vaca1 = new Vaca
-  val animales: mutable.Set[Animal]
-        = mutable.Set(vaca1, new Caballo)
+  val animales: List[Animal]
+        = List(vaca1, new Caballo)
 
   animales.size
   animales.contains(vaca1)
@@ -68,11 +68,25 @@ object Ejemplo extends App {
 
   new Lechero().ordeñar(corralDeVacas)
 
-  val setAnimales:mutable.Set[Animal] = corralDeVacas
-    .animales
+  val setAnimales:List[Animal] = corralDeVacas.animales
 
-  setAnimales += new Caballo
-
+  val corralAnimales:Corral[Animal] = corralDeVacas
 
   new Pastor().pastorear(setAnimales)
+
+
+
+
+
+  var f : Vaca => Vaca = ???
+
+  def g(vaca: Vaca): Vaca = ??? // Recibe una Vaca y devuelve una Vaca
+  def h(vaca: Vaca): Animal = ??? // Devuelve un Animal
+  def i(vaca: Vaca): VacaLoca = ??? // Devuelve una VacaLoca
+  def j(vacaLoca: VacaLoca): Vaca = ??? // Recibe una VacaLoca
+  def k(animal: Animal): Vaca = ??? // Recibe un Animal
+
+  f = k
+
+  f(new Vaca).ordeñar()
 }
